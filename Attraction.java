@@ -8,21 +8,37 @@
 public class Attraction
 {
     private int maxRiders;
-    private double ticketCost;
     private int usedTickets;
-    private double utilCostPerRider;
     private double rideLength;
     private int rph;
-    private double totalHours;
+    private double speed;
+    
+    private static double ticketCost = 0.25;
+    private static int attendants = 3000;
+    private static double totalHours = 12;
     
     public Attraction(){
         maxRiders = 20;
-        ticketCost = 0.5;
         usedTickets = 5;
-        utilCostPerRider = 2;
         rideLength = 0.25;
         rph = 100;
-        totalHours = 12;
+        speed = 5;
+    }
+    
+    public void setMaxRiders(int num){
+        maxRiders = num;
+    }
+    public void setUsedTickets(int num){
+        usedTickets = num;
+    }
+    public void setRideLength(double num){
+        rideLength = num;
+    }
+    public void setRPH(int num){
+        rph = num;
+    }
+    public void setSpeed(double num){
+        speed = num;
     }
     
     public int ridersPerRide(){
@@ -39,8 +55,12 @@ public class Attraction
         return ((int)(totalHours / rideLength));
     }
     
+    public double utilCostPerRider(){
+        return ((speed * rideLength * 10) / ridersPerRide());
+    }
+    
     public double dailyCost(){
-        double costPerRide = ridersPerRide() * utilCostPerRider;
+        double costPerRide = ridersPerRide() * utilCostPerRider();
         return (numRidesPerDay() * costPerRide);
     }
     
