@@ -24,6 +24,13 @@ public class Attraction
         rph = 100;
         speed = 5;
     }
+    public Attraction(int mR, int uT, double rL, int r, double s){
+        maxRiders = mR;
+        usedTickets = uT;
+        rideLength = rL;
+        rph = r;
+        speed = s;
+    }
     
     public void setMaxRiders(int num){
         maxRiders = num;
