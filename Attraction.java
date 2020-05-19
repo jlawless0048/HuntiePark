@@ -11,12 +11,8 @@ public class Attraction
     private int rph;
     private double speed;
     
-    public static double ticketCost = 0.25;
-    public static int attendants = 3000;
-    public static double totalHours = 12;
-    
     public Attraction(){
-        maxRiders = 20;
+        maxRiders = 10;
         usedTickets = 5;
         rideLength = 0.25;
         rph = 100;
@@ -57,7 +53,7 @@ public class Attraction
     }
     
     public int numRidesPerDay(){
-        return ((int)(totalHours / rideLength));
+        return ((int)(Park.getTotalHours()/ rideLength));
     }
     
     public double utilCostPerRider(){
@@ -75,7 +71,7 @@ public class Attraction
     }
     
     public double profit(){
-        double gain = ticketSales() * ticketCost;
+        double gain = ticketSales() * Park.getTicketCost();
         double loss = dailyCost();
         return (gain - loss);
     }

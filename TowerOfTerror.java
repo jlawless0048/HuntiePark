@@ -23,7 +23,7 @@ public class TowerOfTerror extends Attraction{
 
     public double profit(){
         calculateScares();
-        double gain = ticketSales() * ticketCost * scaresPerMinute;
+        double gain = ticketSales() * Park.getTicketCost() * scaresPerMinute;
         double loss = dailyCost();
         return (gain - loss);
     }

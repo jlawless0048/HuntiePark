@@ -17,7 +17,7 @@ public class RollerCoaster extends Attraction
     }
 
     public double profit(){
-        double gain = ticketSales() * ticketCost * vomitCoefficient;
+        double gain = ticketSales() * Park.getTicketCost() * vomitCoefficient;
         double loss = dailyCost();
         return (gain - loss);
     }
