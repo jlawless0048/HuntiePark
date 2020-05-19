@@ -13,6 +13,10 @@ public class TowerOfTerror extends Attraction{
         scareCoefficient = sC;
     }
 
+    public void addScare() {
+        scareCoefficient++;
+    }
+
     public void calculateScares(){
         scaresPerMinute =  ((double)((int)(Math.random() * 10))) - 5 + scareCoefficient;
     }
