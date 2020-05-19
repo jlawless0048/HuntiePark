@@ -1,7 +1,5 @@
-
 /**
  * Base Kit for Attraction, with Profit-based Methods
- *
  * Hunter Stewart
  * 1.0
  */
