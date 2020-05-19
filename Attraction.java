@@ -11,9 +11,9 @@ public class Attraction
     private int rph;
     private double speed;
     
-    private static double ticketCost = 0.25;
-    private static int attendants = 3000;
-    private static double totalHours = 12;
+    public static double ticketCost = 0.25;
+    public static int attendants = 3000;
+    public static double totalHours = 12;
     
     public Attraction(){
         maxRiders = 20;
