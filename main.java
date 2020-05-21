@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  *
  * @author Josh
@@ -15,6 +17,8 @@ public class main extends javax.swing.JFrame {
     }
     
     private void initComponents() {
+        setSize(500, 500);
+        setVisible(true);
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -25,6 +29,48 @@ public class main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jMenuBar = new javax.swing.JMenuBar();
+        Upgrades = new javax.swing.JMenu("Upgrades ($1000)");
+
+        upTicket = new JMenuItem("Used Tickets");
+        upTicket.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upTicketActionPerformed(evt);
+            }
+        });
+
+        upEff = new JMenuItem("Energy Efficiency");
+        upEff.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upEffActionPerformed(evt);
+            }
+        });
+
+        upMax = new JMenuItem("Max Riders");
+        upMax.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upMaxActionPerformed(evt);
+            }
+        });
+
+        upVom = new JMenuItem("Puke Factor");
+        upVom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upVomActionPerformed(evt);
+            }
+        });
+
+        upScare = new JMenuItem("Scare Factor");
+        upScare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upScareActionPerformed(evt);
+            }
+        });
+
+        Upgrades.add(upTicket);Upgrades.add(upEff);Upgrades.add(upMax);Upgrades.add(upVom);Upgrades.add(upScare);
+        jMenuBar.add(Upgrades);
+        setJMenuBar(jMenuBar);
+        add(jMenuBar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,7 +83,15 @@ public class main extends javax.swing.JFrame {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                         {"Money", null},
-                        {"Attendents", null}
+                        {"Attendants", null},
+                        {"Tickets Per", null},
+                        {"Efficiency", null},
+                        {"Max Riders", null},
+                        {"Puke Factor", null},
+                        {"Scare Factor", null},
+                        {"Coasters", null},
+                        {"Towers", null},
+                        {"Ad Level", null}
                 },
                 new String[]{
                         "Asset", "Value"
@@ -46,28 +100,28 @@ public class main extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Hand Out Fliers");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt, park1);
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Buy Roller Coaster ($500)");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt, park1);
             }
         });
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Buy Tower of Terror ($750)");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt, park1);
             }
         });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Buy Advertisement ($100)");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt, park1);
@@ -130,6 +184,27 @@ public class main extends javax.swing.JFrame {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt, Park park) {
+        park.increaseAdLevel();
+    }
+
+    private void upVomActionPerformed(java.awt.event.ActionEvent evt){
+        RollerCoaster.addVomit();
+    }
+
+    private void upMaxActionPerformed(java.awt.event.ActionEvent evt){
+        Attraction.upMax();
+    }
+
+    private void upEffActionPerformed(java.awt.event.ActionEvent evt){
+        Attraction.upEfficiency();
+    }
+
+    private void upScareActionPerformed(java.awt.event.ActionEvent evt){
+        TowerOfTerror.upgradeScare();
+    }
+
+    private void upTicketActionPerformed(java.awt.event.ActionEvent evt){
+        Attraction.upTicket();
     }
 
     public static void main(String args[]) {
@@ -155,7 +230,7 @@ public class main extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -165,4 +240,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenu Upgrades;
+    private javax.swing.JMenuItem upVom,upMax,upEff,upScare,upTicket;
 }

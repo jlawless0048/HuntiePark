@@ -1,24 +1,27 @@
 public class TowerOfTerror extends Attraction{
     private double scaresPerMinute;
-    private double scareCoefficient;
+    private static double scareCoefficient = 0;
 
     public TowerOfTerror() {
         super();
-        scaresPerMinute = 1;
-        scareCoefficient = 0;
-    }
-    public TowerOfTerror(int mR, int uT, double rL, int r, double s, int spm, double sC) {
-        super(mR, uT, rL, r, s);
-        scaresPerMinute = spm;
-        scareCoefficient = sC;
+        scaresPerMinute = 0;
     }
 
-    public void addScare() {
+    public static double getScareCoefficient(){
+        return scareCoefficient;
+    }
+
+    public static void upgradeScare(){
+        Park.getUpgrade();
         scareCoefficient++;
     }
 
     public void calculateScares(){
-        scaresPerMinute =  ((double)((int)(Math.random() * 10))) - 5 + scareCoefficient;
+        double temp = ((double)((int)(Math.random() * 10))) - 5 + scareCoefficient;
+        if(temp < 0){
+            temp = 0;
+        }
+        scaresPerMinute = temp;
     }
 
     public double profit(){

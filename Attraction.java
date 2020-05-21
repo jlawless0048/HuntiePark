@@ -5,28 +5,12 @@
  */
 public class Attraction
 {
-    private int maxRiders;
-    private int usedTickets;
-    private double rideLength;
-    private int rph;
-    private double speed;
+    private static int maxRiders = 10;
+    private static int usedTickets = 5;
+    private static double rideLength = 0.25;
+    private static double energyEfficiency = 0;
     
-    public Attraction(){
-        maxRiders = 10;
-        usedTickets = 5;
-        rideLength = 0.25;
-        rph = 100;
-        speed = 5;
-    }
-    public Attraction(int mR, int uT, double rL, int r, double s){
-        maxRiders = mR;
-        usedTickets = uT;
-        rideLength = rL;
-        rph = r;
-        speed = s;
-    }
-    
-    public void setMaxRiders(int num){
+    public static void setMaxRiders(int num){
         maxRiders = num;
     }
     public void setUsedTickets(int num){
@@ -35,39 +19,61 @@ public class Attraction
     public void setRideLength(double num){
         rideLength = num;
     }
-    public void setRPH(int num){
-        rph = num;
+    public static void setEnergyEfficiency(double num){
+        energyEfficiency = num;
     }
-    public void setSpeed(double num){
-        speed = num;
+
+    public static int getMaxRiders(){
+        return maxRiders;
+    }
+
+    public static double getEnergyEfficiency(){
+        return energyEfficiency;
+    }
+
+    public static int getUsedTickets(){
+        return usedTickets;
+    }
+
+    public static void upMax(){
+        Park.getUpgrade();
+        maxRiders++;
+    }
+
+    public static void upEfficiency(){
+        Park.getUpgrade();
+        energyEfficiency++;
+    }
+
+    public static void upTicket(){
+        Park.getUpgrade();
+        usedTickets++;
     }
     
     public int ridersPerRide(){
-        double temp = rideLength * rph;
-        if(maxRiders > temp){
-            return ((int)temp);
+        int riders = 0;
+        while(riders < maxRiders && Park.getAttendants() > 0){
+            Park.rideTime();
+            riders++;
         }
-        else{
-            return (maxRiders);
-        }
-    }
-    
-    public int numRidesPerDay(){
-        return ((int)(Park.getTotalHours()/ rideLength));
+        return riders;
     }
     
     public double utilCostPerRider(){
-        return ((speed * rideLength * 10) / ridersPerRide());
+        if(ridersPerRide() > 0) {
+            return (((10 - energyEfficiency) * rideLength) / ridersPerRide());
+        }
+        return 0;
     }
     
     public double dailyCost(){
-        double costPerRide = ridersPerRide() * utilCostPerRider();
-        return (numRidesPerDay() * costPerRide);
+        double costPerRide = (double)ridersPerRide() * utilCostPerRider();
+        return (costPerRide);
     }
     
     public double ticketSales(){
         double salesPerRide = (double)usedTickets * (double)ridersPerRide();
-        return (numRidesPerDay() * salesPerRide);
+        return (salesPerRide);
     }
     
     public double profit(){

@@ -1,19 +1,14 @@
 public class RollerCoaster extends Attraction
 {
-    private double vomitCoefficient;
+    private static double vomitCoefficient = 1;
 
-    public RollerCoaster() {
-        super();
-        vomitCoefficient = 1;
-    }
-
-    public RollerCoaster(int mR, int uT, double rL, int r, double s, double vC){
-        super(mR, uT, rL, r, s);
-        vomitCoefficient = vC;
-    }
-
-    public void addVomit(){
+    public static void addVomit(){
+        Park.getUpgrade();
         vomitCoefficient += 0.1;
+    }
+
+    public static double getVomitCoefficient(){
+        return vomitCoefficient;
     }
 
     public double profit(){
