@@ -21,6 +21,8 @@ public class main extends javax.swing.JFrame {
         setSize(500, 500);
         setVisible(true);
 
+        setTitle("HuntiePark 2.0 - Now With Game");
+
         picture = new ImageIcon("abstract-amusement-park-mindy-newman.jpg");
         jScrollPane1 = new javax.swing.JScrollPane();
         jLabel2 = new javax.swing.JLabel(picture);
@@ -33,6 +35,7 @@ public class main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         Upgrades = new javax.swing.JMenu("Upgrades ($1000)");
+        font = new Font("Courier", Font.BOLD,12);
 
         setBackground(Color.CYAN);
 
@@ -104,6 +107,7 @@ public class main extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jButton1.setText("Hand Out Fliers");
+        jButton1.setFont(font);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt, park1);
@@ -246,5 +250,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu Upgrades;
     private javax.swing.Icon picture;
-    private javax.swing.JMenuItem upVom,upMax,upEff,upScare,upTicket;
+    private javax.swing.JMenuItem upVom,upMax,upEff,upScare, upTicket;
+    private Font font;
 }
