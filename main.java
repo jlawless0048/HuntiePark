@@ -3,9 +3,15 @@
  * @author Josh
  */
 public class main extends javax.swing.JFrame {
+    private Park park1 = new Park();
+    getOutThread thready = new getOutThread(park1);
+
     public main() {
         initComponents();
-        Park park1 = new Park();
+        updateThread updater = new updateThread(jTable1);
+
+        thready.start();
+        updater.start();
     }
     
     private void initComponents() {
@@ -14,7 +20,7 @@ public class main extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -28,17 +34,45 @@ public class main extends javax.swing.JFrame {
 
         jLabel1.setText("Huntie Park 1.0 - Dinosaurs not included, Sold Separately.");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                        {"Money", null},
+                        {"Attendents", null}
+                },
+                new String[]{
+                        "Asset", "Value"
+                }
+        ));
+
+        jScrollPane2.setViewportView(jTable1);
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt, park1);
+            }
+        });
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt, park1);
+            }
+        });
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt, park1);
+            }
+        });
 
         jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt, park1);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +117,21 @@ public class main extends javax.swing.JFrame {
 
         pack();
     }
-    
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt, Park park) {
+        park.comeBack();
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt, Park park) {
+        park.addCoaster();
+    }
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt, Park park) {
+        park.addTower();
+    }
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt, Park park) {
+    }
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -116,5 +164,5 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTable jTable1;
 }

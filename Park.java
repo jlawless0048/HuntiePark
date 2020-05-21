@@ -26,10 +26,12 @@ public class Park {
     }
 
     public void addCoaster(){
+        totalMoney -= 500;
         AmmusementPark.add(new RollerCoaster());
     }
 
     public void addTower(){
+        totalMoney -= 750;
         AmmusementPark.add(new TowerOfTerror());
     }
 
